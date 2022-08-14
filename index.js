@@ -62,8 +62,8 @@ const engineerQuestions = [
 const internQuestions = [
     {
         type: "input",
-        name: "github",
-        message: "What is the new employee's github username?",
+        name: "school",
+        message: "What school does your employee attend?",
     },
 ]
 
@@ -84,6 +84,10 @@ function makeNewEmployee() {
         })
 }
 
-function writeToFile()
+function writeToFile(fileName, data) {
+    fs.writeFileSync(fileName, data, (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  }
 
 makeNewEmployee()
