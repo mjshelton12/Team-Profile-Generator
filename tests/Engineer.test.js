@@ -1,4 +1,5 @@
 const index = require('./index')
+const Engineer = require('./Engineer.js')
 
 describe('Engineer', () => {
   describe('properties', () => {

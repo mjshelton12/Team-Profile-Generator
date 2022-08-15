@@ -1,6 +1,12 @@
 // Packages needed for this application
 const fs = require("fs");
 const inquirer = require('inquirer')
+const Manager = require('./src/Manager')
+const Intern = require('./src/Intern')
+const Manager = require('./src/Manager');
+const Employee = require("./src/Employee");
+let teams = [];
+
 
 // Array of questions for all employees, managers, engineers, and interns
 
@@ -88,21 +94,81 @@ const internQuestions = [
 ]
 
 
+
 // Function to prompt employee questions
 
 function makeManager() {
     inquirer
-        .prompt(managerQuestions)
+        .prompt([...employeeQuestions, ...managerQuestions])
         .then((data) => {
-            const filename = `${data.teamName.toLowerCase().split(' ').join('')}.html`
-            switch(true) {
-                case data.position === "Yes":
+                const newEmployee = new Manager(data.name, data.id)
+                teams.push(newEmployee)
+                
+                if(data.position === "Yes"){
                     choosePosition()
+                } else {
+                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                }
+        })
+}
+
+function choosePosition() {
+    inquirer
+        .prompt(
+            {
+                type: "list",
+                name: "role",
+                message: "What role does your new employee hold?",
+                choices: ["Engineer", "Intern", "I don't want to make an new employee"]
+            }
+        )
+        .then((data) => {
+            switch(data.role) {
+                case "Manager":
+                    makeManager();
+                    break;
+                case "Engineer":
+                    makeEngineer();
+                    break;
+                case "Intern":
+                    makeIntern();
+                    break;
                 default:
-                writeToFile(filename, generateEmployees(data))                    
+                    writeToFile()
             }
         })
 }
+
+function makeEngineer() {
+    inquirer
+        .prompt([...employeeQuestions, ...engineerQuestions])
+        .then((data) => {
+                const newEmployee = new Engineer(data.name, data.id)
+                teams.push(newEmployee)
+                
+                if(data.position === "Yes"){
+                    choosePosition()
+                } else {
+                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                }
+        })
+}
+
+function makeIntern() {
+    inquirer
+        .prompt([...employeeQuestions, ...engineerQuestions])
+        .then((data) => {
+                const newEmployee = new Intern(data.name, data.id)
+                teams.push(newEmployee)
+                
+                if(data.position === "Yes"){
+                    choosePosition()
+                } else {
+                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                }
+        })
+}
+
 
 function writeToFile(fileName, data) {
     fs.writeFileSync(fileName, data, (err) =>
@@ -111,3 +177,14 @@ function writeToFile(fileName, data) {
   }
 
 makeManager()
+
+
+// function typeEmployee()
+//    .prompt
+//    .then
+//      build empoyee object
+//      push into team array
+
+
+// funciton generateEmployees
+//    team array and print to HTML

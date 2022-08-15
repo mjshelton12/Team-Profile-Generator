@@ -1,24 +1,23 @@
-const index = require('./index')
+
+const Intern = require('./Intern.js')
 
 describe('Intern', () => {
+    const name = 'Tony Stark'
+    const id = 345
+    const email = 'tstark@example.com'
+    const school = 'NorthWestern'
+    const intern = new Intern(name, id, email, school)
+
   describe('properties', () => {
+
     it('has a name', () => {
-      const name = 'Tony Stark'
-      const id = 345
-      const email = 'tstark@example.com'
-      const school = 'NorthWestern'
-  
-      const intern = new Intern(name, id, email, school)
       expect(intern.name).toBe(name)
     })
   
     it('has an id', () => {
-      const name = 'Tony Stark'
-      const id = 345
-      const email = 'tstark@example.com'
-      const school = 'NorthWestern'
     
-      const intern = new Intern(name, id, email, school)
+    
+
       expect(intern.id).toBe(id)
     })
   
