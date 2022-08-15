@@ -10,7 +10,6 @@ class Employee {
     getName() {
       return `${this.name}`
     }
-
     getId() {
         return `${this.id}`
     }

@@ -10,7 +10,7 @@ class Intern extends Employee {
   }
   
   getSchool() {
-    return '[school: ${this.github}](http://www.github.com/${data.github})'
+    return `School: ${this.school}`
   }
 
   getRole() {

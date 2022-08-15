@@ -40,15 +40,35 @@ const employeePosition = [
 const managerQuestions = [
     {
         type: "input",
-        name: "officeNumber",
-        message: "What is the new employee's office number?",
-    },
-    {
-        type: "input",
         name: "teamName",
         message: "What is the new team's name?",
     },
-
+    {
+        type: "input",
+        name: "name",
+        message: "What is the managers's name?",
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is the manager's ID number?",
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is the manager's email?",
+    },
+        {
+        type: "input",
+        name: "officeNumber",
+        message: "What is the manager's office number?",
+    },
+    {
+        type: "list",
+        name: "position",
+        message: "Do you want to add another team member?",
+        choices: ["Yes", "No"],
+    },
 ]
 
 const engineerQuestions = [
@@ -70,17 +90,17 @@ const internQuestions = [
 
 // Function to prompt employee questions
 
-function makeNewEmployee() {
+function makeManager() {
     inquirer
-        .prompt(employeeQuestions)
+        .prompt(managerQuestions)
         .then((data) => {
-            switch(data){
-                case() :
-            }
-
             const filename = `${data.teamName.toLowerCase().split(' ').join('')}.html`
-
-            writeToFile(filename, generateEmployees(data))
+            switch(true) {
+                case data.position === "Yes":
+                    choosePosition()
+                default:
+                writeToFile(filename, generateEmployees(data))                    
+            }
         })
 }
 
@@ -90,4 +110,4 @@ function writeToFile(fileName, data) {
     );
   }
 
-makeNewEmployee()
+makeManager()

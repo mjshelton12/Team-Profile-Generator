@@ -8,13 +8,9 @@ class Manager extends Employee {
     super(name, id, email)
     this.officeNumber = officeNumber
   }
-  
-  getGithub() {
-    const githubProfile = `[Github: ${this.github}](http://www.github.com/${data.github})`
-  }
 
   getRole() {
-    return 'Engineer'
+    return 'Manager'
   }
 }
 
