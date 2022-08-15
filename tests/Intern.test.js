@@ -1,11 +1,11 @@
 
-const Intern = require('./Intern.js')
+const Intern = require('../src/Intern.js')
 
 describe('Intern', () => {
     const name = 'Tony Stark'
     const id = 345
     const email = 'tstark@example.com'
-    const school = 'NorthWestern'
+    const school = 'Avengers Academy'
     const intern = new Intern(name, id, email, school)
 
   describe('properties', () => {
@@ -15,30 +15,18 @@ describe('Intern', () => {
     })
   
     it('has an id', () => {
-    
-    
-
       expect(intern.id).toBe(id)
     })
   
     it('has an email', () => {
-      const name = 'Tony Stark'
-      const id = 456
-      const email = 'tstark@example.com'
-      const school = 'NorthWestern'
-    
-      const intern = new Intern(name, id, email, school)
       expect(intern.email).toBe(email)
+    })
+    it('has an email', () => {
+      expect(intern.school).toBe(school)
     })
   })
   describe('#gitGithub', () => {
-    it("returns intern's school link", () => {
-      const name = 'Tony Stark'
-      const id = 345
-      const email = 'tstark@example.com'
-      const school = 'NorthWestern'
-    
-      const intern = new Intern(name, id, email, school)
+    it("returns intern's school link", () => {    
       expect(intern.getSchool()).toBe(`School: ${school}`)
     })
 

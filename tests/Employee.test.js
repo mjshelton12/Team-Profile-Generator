@@ -1,5 +1,4 @@
-const index = require('./index')
-const Employee = require('./Employee.js')
+const Employee = require('../src/Employee.js')
 
 describe('Employee', () => {
   describe('properties', () => {
