@@ -29,6 +29,10 @@ describe('Intern', () => {
     it("returns intern's school link", () => {    
       expect(intern.getSchool()).toBe(`School: ${school}`)
     })
-
+  })
+  describe('#getRole', () => {
+    it("returns employee's role", () => {
+        expect(intern.getRole()).toBe('Intern')
+    })
   })
 })

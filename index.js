@@ -3,12 +3,19 @@ const fs = require("fs");
 const inquirer = require('inquirer')
 const Manager = require('./src/Manager')
 const Intern = require('./src/Intern')
-const Manager = require('./src/Manager');
-const Employee = require("./src/Employee");
+const Engineer = require('./src/Engineer');
 let teams = [];
 
 
 // Array of questions for all employees, managers, engineers, and interns
+
+const teamNameQuestion = [
+    {
+        type: "input",
+        name: "teamName",
+        message: "What is the new team's name?",
+    },
+]
 
 const employeeQuestions = [
     {
@@ -26,12 +33,6 @@ const employeeQuestions = [
         name: "email",
         message: "What is the new employee's email?",
     },
-    {
-        type: "list",
-        name: "position",
-        message: "Do you want to add another team member?",
-        choices: ["Yes", "No"],
-    },
 ]
 
 const employeePosition = [
@@ -39,32 +40,12 @@ const employeePosition = [
         type: "list",
         name: "position",
         message: "What is the new employee's position?",
-        choices: ["Engineer", "Intern"],
+        choices: ["Engineer", "Intern", "I don't want to make an new employee"],
     },
 ]
 
 const managerQuestions = [
     {
-        type: "input",
-        name: "teamName",
-        message: "What is the new team's name?",
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "What is the managers's name?",
-    },
-    {
-        type: "input",
-        name: "id",
-        message: "What is the manager's ID number?",
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is the manager's email?",
-    },
-        {
         type: "input",
         name: "officeNumber",
         message: "What is the manager's office number?",
@@ -83,6 +64,12 @@ const engineerQuestions = [
         name: "github",
         message: "What is the new employee's github username?",
     },
+    {
+        type: "list",
+        name: "position",
+        message: "Do you want to add another team member?",
+        choices: ["Yes", "No"],
+    },
 ]
 
 const internQuestions = [
@@ -90,6 +77,12 @@ const internQuestions = [
         type: "input",
         name: "school",
         message: "What school does your employee attend?",
+    },
+    {
+        type: "list",
+        name: "position",
+        message: "Do you want to add another team member?",
+        choices: ["Yes", "No"],
     },
 ]
 
@@ -99,7 +92,7 @@ const internQuestions = [
 
 function makeManager() {
     inquirer
-        .prompt([...employeeQuestions, ...managerQuestions])
+        .prompt([...teamNameQuestion, ...employeeQuestions, ...managerQuestions])
         .then((data) => {
                 const newEmployee = new Manager(data.name, data.id)
                 teams.push(newEmployee)
@@ -114,19 +107,9 @@ function makeManager() {
 
 function choosePosition() {
     inquirer
-        .prompt(
-            {
-                type: "list",
-                name: "role",
-                message: "What role does your new employee hold?",
-                choices: ["Engineer", "Intern", "I don't want to make an new employee"]
-            }
-        )
+        .prompt(employeePosition)
         .then((data) => {
-            switch(data.role) {
-                case "Manager":
-                    makeManager();
-                    break;
+            switch(data.position) {
                 case "Engineer":
                     makeEngineer();
                     break;
@@ -134,7 +117,7 @@ function choosePosition() {
                     makeIntern();
                     break;
                 default:
-                    writeToFile()
+                    writeToFile('teamPage.html', generateEmployees(teams))
             }
         })
 }
@@ -156,7 +139,7 @@ function makeEngineer() {
 
 function makeIntern() {
     inquirer
-        .prompt([...employeeQuestions, ...engineerQuestions])
+        .prompt([...employeeQuestions, ...internQuestions])
         .then((data) => {
                 const newEmployee = new Intern(data.name, data.id)
                 teams.push(newEmployee)
@@ -167,6 +150,10 @@ function makeIntern() {
                     writeToFile('teamPage.html', generateEmployees(teams))                    
                 }
         })
+}
+
+function generateEmployees(members) {
+    return members
 }
 
 

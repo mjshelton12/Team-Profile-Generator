@@ -24,6 +24,10 @@ describe('Engineer', () => {
     it("returns engineer's github link", () => {
       expect(engineer.getGithub()).toBe(`[Github: JJones48](http://www.github.com/JJones48)`)
     })
-
+})
+  describe('#getRole', () => {
+    it("returns employee's role", () => {
+      expect(engineer.getRole()).toBe('Engineer')
+    })
   })
 })
