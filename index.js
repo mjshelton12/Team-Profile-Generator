@@ -171,16 +171,20 @@ function generateEmployees(members) {
                     </div>
                 </div>
             </div>
-            <div id = member-cards>
+            <div id = "member-cards" class = "container">
+            <div class = "row justify-center-content">
             `
     
     let card = members.map((member, i) => {
-        return `<div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">${member.name}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">${member.getRole()}</h6>
-          <p class="card-text">${member.id}</p>
-          <p class="card-text"><a href="mailto:${member.email}">${member.email}</a></p>
+        return `<div class = "col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${member.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${member.getRole()}</h6>
+                <p class="card-text"> > ID: ${member.id}</p>
+                <p class="card-text"> > email: <a href="mailto:${member.email}">${member.email}</a></p>
+                ${renderOfficeNumber(member)} ${renderGitHub(member)} ${renderSchool(member)}
+            </div>
         </div>
       </div>`
     })
@@ -189,12 +193,37 @@ function generateEmployees(members) {
 
     let bottomOfPage = `
     </div>
+    </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     </body>`
 
     return topOfPage + card.join('\n') + bottomOfPage
 }
 
+function renderOfficeNumber(member) {
+    if (member.officeNumber) {
+        return `<p class="card-text"> > Office Number: ${member.officeNumber}</p>`
+    } else {
+        return ''
+    }
+}
+
+function renderGitHub(member) {
+    if (member.github) {
+        return `<p class = "card-text"> > Github: <a href = "http://www.github.com/${member.github}">${member.github}</a>`
+    } else {
+        return ''
+    }
+}
+
+function renderSchool(member) {
+    if (member.school) {
+        return `<p class="card-text"> > School: ${member.school}</p>`
+    } else {
+        return ''
+    }
+}
 
 function writeToFile(fileName, data) {
     fs.writeFileSync(fileName, data, (err) =>
