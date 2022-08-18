@@ -160,24 +160,39 @@ function generateEmployees(members) {
             <title>Team Page</title>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="./dist/style.css" />
         </head>
         <body>
-            <div>
-                <h1> Team Page </h1>
+            <div class = "header-box">
+                <div class = "container">
+                    <div class = "row justify-content-center header-box">
+                        <h1 class = "team-title"> Team Page </h1>
+                    </div>
+                </div>
             </div>
             <div id = member-cards>
             `
     
-    let card = members.forEach((member, i) => {
-        `<p> ${member.name} </p>`
+    let card = members.map((member, i) => {
+        return `<div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${member.name}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${member.getRole()}</h6>
+          <p class="card-text">${member.id}</p>
+          <p class="card-text"><a href="mailto:${member.email}">${member.email}</a></p>
+        </div>
+      </div>`
     })
+
+    console.log(card)
 
     let bottomOfPage = `
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     </body>`
 
-    return topOfPage + card + bottomOfPage
+    return topOfPage + card.join('\n') + bottomOfPage
 }
 
 
