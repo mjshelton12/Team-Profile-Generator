@@ -38,7 +38,7 @@ const employeeQuestions = [
 const employeePosition = [
     {
         type: "list",
-        name: "position",
+        name: "role",
         message: "What is the new employee's position?",
         choices: ["Engineer", "Intern", "I don't want to make an new employee"],
     },
@@ -52,7 +52,7 @@ const managerQuestions = [
     },
     {
         type: "list",
-        name: "position",
+        name: "add",
         message: "Do you want to add another team member?",
         choices: ["Yes", "No"],
     },
@@ -66,7 +66,7 @@ const engineerQuestions = [
     },
     {
         type: "list",
-        name: "position",
+        name: "add",
         message: "Do you want to add another team member?",
         choices: ["Yes", "No"],
     },
@@ -80,7 +80,7 @@ const internQuestions = [
     },
     {
         type: "list",
-        name: "position",
+        name: "add",
         message: "Do you want to add another team member?",
         choices: ["Yes", "No"],
     },
@@ -92,12 +92,12 @@ const internQuestions = [
 
 function makeManager() {
     inquirer
-        .prompt([...teamNameQuestion, ...employeeQuestions, ...managerQuestions])
+        .prompt([...employeeQuestions, ...managerQuestions])
         .then((data) => {
-                const newEmployee = new Manager(data.name, data.id)
+                const newEmployee = new Manager(data.name, data.id, data.email, data.officeNumber)
                 teams.push(newEmployee)
                 
-                if(data.position === "Yes"){
+                if(data.add === "Yes"){
                     choosePosition()
                 } else {
                     writeToFile('teamPage.html', generateEmployees(teams))                    
@@ -109,7 +109,7 @@ function choosePosition() {
     inquirer
         .prompt(employeePosition)
         .then((data) => {
-            switch(data.position) {
+            switch(data.role) {
                 case "Engineer":
                     makeEngineer();
                     break;
@@ -126,10 +126,10 @@ function makeEngineer() {
     inquirer
         .prompt([...employeeQuestions, ...engineerQuestions])
         .then((data) => {
-                const newEmployee = new Engineer(data.name, data.id)
+                const newEmployee = new Engineer(data.name, data.id, data.email, data.github)
                 teams.push(newEmployee)
                 
-                if(data.position === "Yes"){
+                if(data.add === "Yes"){
                     choosePosition()
                 } else {
                     writeToFile('teamPage.html', generateEmployees(teams))                    
@@ -141,10 +141,10 @@ function makeIntern() {
     inquirer
         .prompt([...employeeQuestions, ...internQuestions])
         .then((data) => {
-                const newEmployee = new Intern(data.name, data.id)
+                const newEmployee = new Intern(data.name, data.id, data.email, data.school)
                 teams.push(newEmployee)
                 
-                if(data.position === "Yes"){
+                if(data.add === "Yes"){
                     choosePosition()
                 } else {
                     writeToFile('teamPage.html', generateEmployees(teams))                    
@@ -153,7 +153,31 @@ function makeIntern() {
 }
 
 function generateEmployees(members) {
-    return members
+    console.log(members)
+    let topOfPage = `<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Team Page</title>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" type="text/css" href="./dist/style.css" />
+        </head>
+        <body>
+            <div>
+                <h1> Team Page </h1>
+            </div>
+            <div id = member-cards>
+            `
+    
+    let card = members.forEach((member, i) => {
+        `<p> ${member.name} </p>`
+    })
+
+    let bottomOfPage = `
+    </div>
+    </body>`
+
+    return topOfPage + card + bottomOfPage
 }
 
 
