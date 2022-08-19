@@ -4,6 +4,8 @@
 }
 
 .team-title {
+    font-family:'Bebas Neue', cursive;
+    font-size: 4rem;
     margin-top: 5rem;
     margin-bottom: 3rem;
     color: white;

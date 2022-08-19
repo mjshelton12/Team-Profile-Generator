@@ -160,6 +160,16 @@ function generateEmployees(members) {
             <title>Team Page</title>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <script src="https://kit.fontawesome.com/06e213b886.js" crossorigin="anonymous"></script>
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+            <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+            />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="./dist/style.css" />
         </head>
@@ -167,7 +177,7 @@ function generateEmployees(members) {
             <div class = "header-box">
                 <div class = "container">
                     <div class = "row justify-content-center header-box">
-                        <h1 class = "team-title"> Team Page </h1>
+                        <h1 class = "team-title"> Our Team </h1>
                     </div>
                 </div>
             </div>
@@ -181,9 +191,9 @@ function generateEmployees(members) {
             <div class="card-body">
                 <h5 class="card-title">${member.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${member.getRole()}</h6>
-                <p class="card-text"> > ID: ${member.id}</p>
-                <p class="card-text"> > email: <a href="mailto:${member.email}">${member.email}</a></p>
-                ${renderOfficeNumber(member)} ${renderGitHub(member)} ${renderSchool(member)}
+                <p class="card-text"><i class="fa-solid fa-circle-arrow-right"></i> ID: ${member.id}</p>
+                <p class="card-text"><i class="fa-solid fa-circle-arrow-right"></i> email: <a href="mailto:${member.email}">${member.email}</a></p>
+                <p class="card-text"><i class="fa-solid fa-circle-arrow-right"></i>${renderOfficeNumber(member)} ${renderGitHub(member)} ${renderSchool(member)}</p>
             </div>
         </div>
       </div>`
@@ -195,7 +205,6 @@ function generateEmployees(members) {
     </div>
     </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     </body>`
 
     return topOfPage + card.join('\n') + bottomOfPage
@@ -203,7 +212,7 @@ function generateEmployees(members) {
 
 function renderOfficeNumber(member) {
     if (member.officeNumber) {
-        return `<p class="card-text"> > Office Number: ${member.officeNumber}</p>`
+        return ` Office: ${member.officeNumber}`
     } else {
         return ''
     }
@@ -211,7 +220,7 @@ function renderOfficeNumber(member) {
 
 function renderGitHub(member) {
     if (member.github) {
-        return `<p class = "card-text"> > Github: <a href = "http://www.github.com/${member.github}">${member.github}</a>`
+        return ` Github: <a href = "http://www.github.com/${member.github}" target="_blank">${member.github}</a>`
     } else {
         return ''
     }
@@ -219,7 +228,7 @@ function renderGitHub(member) {
 
 function renderSchool(member) {
     if (member.school) {
-        return `<p class="card-text"> > School: ${member.school}</p>`
+        return ` School: ${member.school}`
     } else {
         return ''
     }
