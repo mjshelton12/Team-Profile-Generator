@@ -241,14 +241,3 @@ function writeToFile(fileName, data) {
   }
 
 makeManager()
-
-
-// function typeEmployee()
-//    .prompt
-//    .then
-//      build empoyee object
-//      push into team array
-
-
-// funciton generateEmployees
-//    team array and print to HTML
