@@ -20,6 +20,7 @@
 ![Team Page](https://i.imgur.com/UxpPaM5.jpg)
 
 ## Video
+ [![Watch the video](https://i.imgur.com/vA3DjFS.jpg)](https://watch.screencastify.com/v/ChqkgCbv2Vf7lxhCtsrN)
 
 ## Summary
 
