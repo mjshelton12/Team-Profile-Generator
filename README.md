@@ -13,7 +13,7 @@
 
 ## Live Site
 
-[Live Scheduler](https://mjshelton12.github.io/Team-Profile-Generator/)
+[Live Team Page](https://mjshelton12.github.io/Team-Profile-Generator/)
 
 ## Overview of Site
 
