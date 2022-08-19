@@ -100,7 +100,7 @@ function makeManager() {
                 if(data.add === "Yes"){
                     choosePosition()
                 } else {
-                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                    writeToFile('index.html', generateEmployees(teams))                    
                 }
         })
 }
@@ -117,7 +117,7 @@ function choosePosition() {
                     makeIntern();
                     break;
                 default:
-                    writeToFile('teamPage.html', generateEmployees(teams))
+                    writeToFile('index.html', generateEmployees(teams))
             }
         })
 }
@@ -132,7 +132,7 @@ function makeEngineer() {
                 if(data.add === "Yes"){
                     choosePosition()
                 } else {
-                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                    writeToFile('index.html', generateEmployees(teams))                    
                 }
         })
 }
@@ -147,7 +147,7 @@ function makeIntern() {
                 if(data.add === "Yes"){
                     choosePosition()
                 } else {
-                    writeToFile('teamPage.html', generateEmployees(teams))                    
+                    writeToFile('index.html', generateEmployees(teams))                    
                 }
         })
 }
