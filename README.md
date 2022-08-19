@@ -31,7 +31,7 @@
 * Ensured email and github links worked
 
 ## Tests
-* Tested constructors which created Managers, Engineers, Interns, and Employees
+* Tested properties and functions of the constructors which created Managers, Engineers, Interns, and Employees
 
 ## Author Links
 
